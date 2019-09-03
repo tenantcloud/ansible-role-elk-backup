@@ -1,0 +1,16 @@
+export ES_USR=""
+export ES_PASSWD=""
+export DOMAIN="127.0.0.1:9200"
+export REPO="change-to-your-bucket-name"
+export REGION="us-west-2"
+export ESU=""
+export ESP=""
+
+INDEX_PREFIXES=''
+INDEX_PREFIXES+='laravel- '
+INDEX_PREFIXES+='nginx- '
+INDEX_PREFIXES+='syslog- '
+INDEX_PREFIXES+='metricbeat- '
+INDEX_PREFIXES+='horizon- '
+INDEX_PREFIXES+='websocket- '
+INDEX_PREFIXES+='mysql- '
