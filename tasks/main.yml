@@ -14,12 +14,13 @@
     args:
       executable: /bin/bash
 
-   - name: Add cron job to remove last index for 31 day
-     shell: echo '20 3 * * * ubuntu /usr/local/bin/elk-delete `date --date='-31 day' +%Y.%m.%d` > /dev/null 2>&1' | sudo tee -a /etc/crontab
-     args:
-       executable: /bin/bash
+  - name: Add cron job to remove last index for 31 day
+    shell: echo '20 3 * * * ubuntu /usr/local/bin/elk-delete `date --date='-31 day' +%Y.%m.%d` > /dev/null 2>&1' | sudo tee -a /etc/crontab
+    args:
+      executable: /bin/bash
 
-   - name: Copy elk environment
-     template:
-       src: files/env/.elk.example
-       dest: /usr/local/bin/.elk
+  - name: Copy elk environment
+    template:
+      src: files/env/.elk.example
+      dest: /usr/local/bin/.elk
+
