@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ ! -z $1 ]
+then
+  OF_DAY=$1
+else
+  echo "Please enter the date for which logs are to be restored"
+  echo "ex. 2019.01.01"
+  exit
+fi
+
+DIR_ELK=$(dirname $(readlink -f $0))
+source ${DIR_ELK}/.elk
+
+for prefix in $INDEX_PREFIXES;
+do
+  INDEX_NAME=${prefix}${OF_DAY}
+  SNAPSHOT_NAME=${INDEX_NAME}"-snapshot"
+  echo "Restore Snapshot ${INDEX_NAME}"
+  curl -u "$ESU:$ESP" -H 'Content-Type: application/json' -XPOST "http://${DOMAIN}/_snapshot/${REPO}/$INDEX_NAME-snapshot/_restore" -d '{
+      "indices": "'"$INDEX_NAME"'",
+      "ignore_unavailable": "true",
+      "include_global_state": false
+  }'
+  echo "Successfully restored ${INDEX_NAME} from s3://${REPO}"
+done

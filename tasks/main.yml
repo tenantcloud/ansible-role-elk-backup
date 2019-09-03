@@ -1,0 +1,10 @@
+---
+  - name: Install elasticsearch repository-s3 plugin
+    elasticsearch_plugin:
+      name: repository-s3
+      state: present
+      force: yes
+  - name: Copy elk scripts
+    copy:
+      src: files/elk
+      dest: /usr/local/bin
