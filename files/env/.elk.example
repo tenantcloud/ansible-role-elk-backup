@@ -2,7 +2,7 @@ export ES_USR="{{ aws_access_key }}"
 export ES_PASSWD="{{ aws_secret_key }}"
 export DOMAIN="127.0.0.1:9200"
 export REPO="{{ s3_snapshot_bucket }}"
-export REGION="us-west-2"
+export REGION="{{ aws_region }}"
 export ESU="{{ creds[0].username }}"
 export ESP="{{ creds[0].password }}"
 
