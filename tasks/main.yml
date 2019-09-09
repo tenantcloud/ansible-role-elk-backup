@@ -15,7 +15,7 @@
       user: "ubuntu"
       minute: "20"
       hour: "3"
-      job: "/usr/local/bin/backup-elk `date --date='-1 day' +%Y.%m.%d` > /dev/null 2>&1"
+      job: "/usr/local/bin/elk-backup `date --date='-1 day' +%Y.%m.%d` > /dev/null 2>&1"
 
   - name: Add cron job to remove last index for 31 day
     cron:
