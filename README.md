@@ -1,36 +1,49 @@
-Ansible role for install elk scripts to init, backup, delete, restore elasticsearch indices.
+tenantcloud.ansible_role_elk_backup
 =========
 
-ELK Stack backup role. This role include in default terraform scenario for auto-deploy new server.
+Ansible role for init, backup, delete and restore elasticsearch indices. This role include in default terraform scenario for auto-deploy new server.
 
--------
+Requirements
+------------
 
-For manual installation this role:
+ELK Stack, Elastalert, ReadOnlyRest
 
-```ansible-galaxy install tenantcloud.ansible_role_elk_backup```
-
-Add this role name to playbook and run:
-
-```cd /tmp/.ansible/ && ansible-playbook playbook-name.yml```
-
--------
-
-It's install scripts to /usr/local/bin with prefix elk-*
+Role Variables
+--------------
 
 Example to use this commands:
 
 ```/usr/local/bin/elk-backup 2019.01.01```
 
+Dependencies
+------------
+
+  - geerlingguy.java
+  - geerlingguy.elasticsearch
+  - geerlingguy.kibana
+  - geerlingguy.logstash
+  - tenantcloud.ansible_role_elastalert
+  - tenantcloud.ansible_role_auth_elk
+  - tenantcloud.ansible_role_readonlyrest
+  - tenantcloud.ansible_role_elk_common
+  - tenantcloud.ansible_role_elk_backup
+
+Example Playbook
+----------------
+
+  - hosts: localhost
+    vars:
+      ea_dir: elastalert
+    become: yes
+    roles:
+      - tenantcloud.ansible_role_elk_backup
+
+License
 -------
 
-Variable included in this role:
+BSD
 
--------
+Author Information
+------------------
 
-Sample playbook-name.yml
-
-- hosts: localhost
-  become: yes
-  roles:
-    - ansible-role-elk-backup
-
+tenantCloud DevOps Team
