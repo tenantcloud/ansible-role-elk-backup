@@ -20,3 +20,17 @@ It's install scripts to /usr/local/bin with prefix elk-*
 Example to use this commands:
 
 ```/usr/local/bin/elk-backup 2019.01.01```
+
+-------
+
+Variable included in this role:
+
+-------
+
+Sample playbook-name.yml
+
+- hosts: localhost
+  become: yes
+  roles:
+    - ansible-role-elk-backup
+
