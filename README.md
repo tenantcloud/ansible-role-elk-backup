@@ -13,7 +13,9 @@ Role Variables
 
 Example to use this commands:
 
-```/usr/local/bin/elk-backup 2019.01.01```
+```bash
+/usr/local/bin/elk-backup 2019.01.01
+```
 
 Dependencies
 ------------
@@ -31,12 +33,14 @@ Dependencies
 Example Playbook
 ----------------
 
+```yaml
   - hosts: localhost
     vars:
       ea_dir: elastalert
     become: yes
     roles:
       - tenantcloud.ansible_role_elk_backup
+```
 
 License
 -------
