@@ -50,4 +50,4 @@ BSD
 Author Information
 ------------------
 
-tenantCloud DevOps Team
+TenantCloud DevOps Team
