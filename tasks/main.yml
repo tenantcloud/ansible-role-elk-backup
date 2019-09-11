@@ -8,3 +8,25 @@
     copy:
       src: files/elk
       dest: /usr/local/bin
+
+  - name: Add cron job for backup index
+    cron:
+      name: "backup index"
+      user: "ubuntu"
+      minute: "20"
+      hour: "3"
+      job: "/usr/local/bin/elk-backup `date --date='-1 day' +%Y.%m.%d` > /dev/null 2>&1"
+
+  - name: Add cron job to remove last index for 31 day
+    cron:
+      name: "remove old index"
+      user: "ubuntu"
+      minute: "20"
+      hour: "3"
+      job: "/usr/local/bin/elk-delete `date --date='-31 day' +%Y.%m.%d` > /dev/null 2>&1"
+
+  - name: Copy elk environment
+    template:
+      src: files/env/.elk.example
+      dest: /usr/local/bin/.elk
+
