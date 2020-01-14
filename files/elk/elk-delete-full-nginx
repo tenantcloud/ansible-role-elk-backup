@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INDEX_FULL_NGINX+='full-nginx- '
+INDEX_FULL_NGINX='full-nginx- '
 
 if [ ! -z $1 ]
 then
