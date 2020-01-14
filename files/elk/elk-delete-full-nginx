@@ -1,0 +1,21 @@
+#!/bin/bash
+
+INDEX_FULL_NGINX+='full-nginx- '
+
+if [ ! -z $1 ]
+then
+  OF_DAY=$1
+else
+  echo "Please enter the date for which logs are to be restored"
+  echo "ex. 2019.01.01"
+  exit
+fi
+
+DIR_ELK=$(dirname $(readlink -f $0))
+source ${DIR_ELK}/.elk
+
+for prefix in $INDEX_FULL_NGINX;
+do
+  curl -u "$ESU:$ESP" -XDELETE "http://${DOMAIN}/${prefix}${OF_DAY}"
+  echo -e "\nDELETED: ${prefix}${OF_DAY}"
+done
