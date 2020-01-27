@@ -13,17 +13,17 @@
     cron:
       name: "backup index"
       user: "ubuntu"
-      minute: "20"
+      minute: "10"
       hour: "3"
-      job: "/usr/local/bin/elk-backup `date --date='-1 day' +%Y.%m.%d` > /dev/null 2>&1"
+      job: ""/opt/elk/backup-index-s3.sh
 
-  - name: Add cron job to remove last index for 31 day
+  - name: Add cron job to remove last index
     cron:
       name: "remove old index"
       user: "ubuntu"
       minute: "20"
       hour: "3"
-      job: "/usr/local/bin/elk-delete `date --date='-31 day' +%Y.%m.%d` > /dev/null 2>&1"
+      job: "/opt/elk/delele-index.sh"
 
   - name: Copy elk environment
     template:
