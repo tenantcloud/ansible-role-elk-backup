@@ -7,8 +7,6 @@ JSON=$(cat <<EOL
 {
   "type": "s3",
   "settings": {
-    "access_key": "$ES_USR",
-    "secret_key": "$ES_PASSWD",
     "bucket": "$REPO",
     "region": "$REGION",
     "base_path": "elasticsearch",
