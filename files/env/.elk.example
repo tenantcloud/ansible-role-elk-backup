@@ -14,4 +14,5 @@ INDEX_PREFIXES+='metricbeat- '
 INDEX_PREFIXES+='horizon- '
 INDEX_PREFIXES+='websocket- '
 INDEX_PREFIXES+='mysql- '
-
+INDEX_PREFIXES+='mysql-lag- '
+INDEX_PREFIXES+='full-nginx- '
