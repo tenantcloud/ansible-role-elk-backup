@@ -11,6 +11,13 @@
       dest: /usr/local/bin/
       mode: '0777'
 
+  - name: Copy elk scripts
+    copy:
+      src: files/opt/elk
+      dest: /opt
+      mode: "0777"
+      user: "ubuntu"
+
   - name: Add cron job for backup index
     cron:
       name: "backup index"
