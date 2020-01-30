@@ -16,7 +16,7 @@
       src: files/opt/elk
       dest: /opt
       mode: "0777"
-      user: "ubuntu"
+      owner: "ubuntu"
 
   - name: Add cron job for backup index
     cron:
