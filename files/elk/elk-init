@@ -3,8 +3,8 @@
 DIR_ELK=$(dirname $(readlink -f $0))
 source ${DIR_ELK}/.elk
 
-echo "$ES_USR" | bin/elasticsearch-keystore add s3.client.default.access_key
-echo "$ES_PASSWD" | bin/elasticsearch-keystore add s3.client.default.secret_key
+echo "$ES_USR" | /usr/share/elasticsearch/bin/elasticsearch-keystore add s3.client.default.access_key
+echo "$ES_PASSWD" | /usr/share/elasticsearch/bin/elasticsearch-keystore add s3.client.default.secret_key
 service elasticsearch restart
 
 JSON=$(cat <<EOL
@@ -20,4 +20,13 @@ JSON=$(cat <<EOL
 EOL
 )
 
-curl -u "$ESU:$ESP" -H 'Content-Type: application/json' -XPUT "http://${DOMAIN}/_snapshot/${REPO}/" -d "$JSON"
+wait-for-url() {
+    echo "Testing ${DOMAIN}"
+    timeout -s TERM 45 bash -c \
+    'while [[ "$(curl -u "$ESU:$ESP" -s -o /dev/null -L -w ''%{http_code}'' ${0})" != "200" ]];\
+    do echo "Waiting for ${0}" && sleep 2;\
+    done' ${DOMAIN}
+    echo "OK!"
+    curl -u "$ESU:$ESP" -H 'Content-Type: application/json' -XPUT "http://${DOMAIN}/_snapshot/${REPO}/" -d "$JSON"
+}
+wait-for-url http://${DOMAIN}:9200
