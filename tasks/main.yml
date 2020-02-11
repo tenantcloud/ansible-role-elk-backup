@@ -38,4 +38,3 @@
   template:
     src: files/env/.elk.example
     dest: /usr/local/bin/.elk
-
