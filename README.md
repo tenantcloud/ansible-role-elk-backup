@@ -1,4 +1,7 @@
-tenantcloud.ansible_role_elk_backup
+
+![Lint Ansible Roles](https://github.com/tenantcloud/ansible-role-elk-backup/workflows/Lint%20Ansible%20Roles/badge.svg)
+
+tenantcloud.elk_backup
 =========
 
 Ansible role for init, backup, delete and restore elasticsearch indices. This role include in default terraform scenario for auto-deploy new server.
@@ -21,9 +24,9 @@ Dependencies
 ------------
 
   - geerlingguy.java
-  - geerlingguy.elasticsearch
-  - geerlingguy.kibana
-  - geerlingguy.logstash
+  - tenantcloud.elasticsearch
+  - tenantcloud.kibana
+  - tenantcloud.logstash
   - tenantcloud.ansible_role_elastalert
   - tenantcloud.ansible_role_auth_elk
   - tenantcloud.ansible_role_readonlyrest
@@ -39,7 +42,7 @@ Example Playbook
       ea_dir: elastalert
     become: yes
     roles:
-      - tenantcloud.ansible_role_elk_backup
+      - tenantcloud.elk_backup
 ```
 
 License
